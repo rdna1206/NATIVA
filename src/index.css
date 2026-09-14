@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-lora: 'Lora', Georgia, serif;
+
+  --color-forest: #285943;
+  --color-forest-dark: #1e4533;
+  --color-forest-light: #347055;
+  --color-leaf: #6F9E73;
+  --color-leaf-light: #8cb58f;
+  --color-beige: #F3EBDD;
+  --color-beige-dark: #e8ddca;
+  --color-beige-light: #faf6f0;
+  --color-terracotta: #C97852;
+  --color-terracotta-dark: #b3633e;
+  --color-terracotta-light: #d88f6c;
+}
+
+:root {
+  --forest: #285943;
+  --leaf: #6F9E73;
+  --beige: #F3EBDD;
+  --terracotta: #C97852;
+  --white: #FFFFFF;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #F3EBDD;
+  color: #285943;
+  margin: 0;
+  padding: 0;
+}
+
+.font-serif-quote {
+  font-family: 'Lora', Georgia, serif;
+}
+
+.font-sans-ui {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom smooth scroll offset for sticky header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+

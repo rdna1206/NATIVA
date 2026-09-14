@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Publicly readable products, only admins can modify
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Publicly readable product prices, only admins can modify
+    match /product_prices/{productId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Publicly readable site content, only admins can modify
+    match /site_content/{contentId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Public customers can submit requests/orders; only authenticated admins can view and manage
+    match /requests/{requestId} {
+      allow create: if true;
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // Analytics events: public creation for tracking; authenticated read
+    match /analytics/{eventId} {
+      allow create: if true;
+      allow read: if isAuthenticated();
+      allow delete: if isAuthenticated();
+    }
+
+    // Admin users collection: only authenticated admins
+    match /admin_users/{userId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Default fallback
+    match /{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+  }
+}

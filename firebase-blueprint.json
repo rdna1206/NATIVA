@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "Product": {
+      "fields": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "tagline": { "type": "string" },
+        "description": { "type": "string" },
+        "longDescription": { "type": "string" },
+        "price": { "type": "number" },
+        "weight": { "type": "string" },
+        "rating": { "type": "number" },
+        "reviewsCount": { "type": "number" },
+        "image": { "type": "string" },
+        "ingredients": { "type": "array" },
+        "benefits": { "type": "array" },
+        "origin": { "type": "string" },
+        "usageInstructions": { "type": "string" },
+        "isFeatured": { "type": "boolean" },
+        "isActive": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Request": {
+      "fields": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerCity": { "type": "string" },
+        "customerAddress": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "quantity": { "type": "number" },
+        "notes": { "type": "string" },
+        "status": { "type": "string" },
+        "total": { "type": "number" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "SiteContent": {
+      "fields": {
+        "id": { "type": "string" },
+        "hero": { "type": "object" },
+        "benefits": { "type": "array" },
+        "featured": { "type": "object" },
+        "about": { "type": "object" },
+        "testimonial": { "type": "object" },
+        "finalCta": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "AdminUser": {
+      "fields": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "lastLogin": { "type": "string" }
+      }
+    },
+    "AnalyticsEvent": {
+      "fields": {
+        "id": { "type": "string" },
+        "eventType": { "type": "string" },
+        "target": { "type": "string" },
+        "metadata": { "type": "object" },
+        "timestamp": { "type": "string" }
+      }
+    }
+  }
+}

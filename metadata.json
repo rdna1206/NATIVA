@@ -1,0 +1,6 @@
+{
+  "name": "NATIVA – Productos naturales y bienestar",
+  "description": "Landing page oficial de NATIVA: productos naturales, artesanales y saludables elaborados en Colombia con amor y respeto por la tierra.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
