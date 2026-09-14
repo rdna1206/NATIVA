@@ -26,8 +26,37 @@
       }(window.location));
     </script>
   </head>
-  <body class="bg-[#F3EBDD] text-[#285943] font-montserrat antialiased selection:bg-[#6F9E73] selection:text-white">
+  <body class="bg-[#F3EBDD] text-[#285943] font-montserrat antialiased selection:bg-[#6F9E73] selection:text-white" style="background-color: #F3EBDD; margin: 0; min-height: 100vh;">
     <div id="root"></div>
+    <noscript>
+      <div style="font-family: sans-serif; padding: 40px; text-align: center; color: #285943;">
+        <h2>NATIVA</h2>
+        <p>Por favor activa JavaScript para ver la tienda de bienestar natural.</p>
+      </div>
+    </noscript>
+    <script>
+      // Detección en caso de que GitHub Pages sirva el código fuente en lugar del build de Vite
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          var root = document.getElementById('root');
+          if (root && root.children.length === 0 && (window.location.hostname.includes('github.io') || window.location.protocol === 'file:')) {
+            var banner = document.createElement('div');
+            banner.style.cssText = 'font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 580px; margin: 50px auto; padding: 32px; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(40,89,67,0.12); border: 1px solid #e8ddca; text-align: center; color: #285943;';
+            banner.innerHTML = '<div style="font-size: 36px; margin-bottom: 12px;">🌿</div>' +
+              '<h2 style="font-size: 20px; font-weight: 800; margin: 0 0 8px 0; color: #285943;">NATIVA – Configuración de GitHub Pages</h2>' +
+              '<p style="font-size: 13px; line-height: 1.6; color: #4b5563; margin: 0 0 20px 0;">' +
+              'Tu repositorio en GitHub está configurado para servir los archivos fuente de la rama directamente en lugar de compilar la aplicación React con Vite.<br><br>' +
+              '<strong>Solución en 2 clics en GitHub:</strong><br>' +
+              '1. Ve a: <strong>Settings &rarr; Pages</strong>.<br>' +
+              '2. En <strong>"Source"</strong> (Build and deployment), selecciona <strong>GitHub Actions</strong>.<br>' +
+              '3. En la pestaña <strong>Actions</strong>, ejecuta <strong>"Deploy NATIVA to GitHub Pages"</strong>.' +
+              '</p>' +
+              '<a href="https://github.com/rdna1206/NATIVA/settings/pages" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #285943; color: #ffffff; text-decoration: none; padding: 12px 22px; border-radius: 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Abrir Settings &rarr; Pages en GitHub</a>';
+            root.appendChild(banner);
+          }
+        }, 1500);
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

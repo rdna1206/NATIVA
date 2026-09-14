@@ -29,11 +29,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build production bundle
-        run: npm run build
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Build production bundle
+        run: npm run build -- --base=/NATIVA/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
