@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, Mail, ArrowRight, ShieldCheck, Sparkles, AlertCircle, Eye, EyeOff } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { authService } from '../../services/authService';
 
 interface AdminLoginProps {
@@ -12,8 +12,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isRegisterMode, setIsRegisterMode] = useState(false);
-  const [displayName, setDisplayName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,27 +31,18 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
     setLoading(true);
 
     try {
-      if (isRegisterMode) {
-        if (!displayName.trim()) {
-          throw new Error('Por favor ingresa tu nombre completo.');
-        }
-        await authService.createAdmin(email, password, displayName, 'superadmin');
-        const loggedUser = await authService.login(email, password);
-        onLoginSuccess(loggedUser);
-      } else {
-        const loggedUser = await authService.login(email, password);
-        onLoginSuccess(loggedUser);
-      }
+      const loggedUser = await authService.login(email, password);
+      onLoginSuccess(loggedUser);
     } catch (err: unknown) {
       console.error('Auth error:', err);
       let message = 'Ocurrió un error al intentar autenticar.';
       if (err instanceof Error) {
-        if (err.message.includes('user-not-found') || err.message.includes('wrong-password') || err.message.includes('invalid-credential')) {
+        if (
+          err.message.includes('user-not-found') ||
+          err.message.includes('wrong-password') ||
+          err.message.includes('invalid-credential')
+        ) {
           message = 'Credenciales inválidas. Verifica tu correo y contraseña.';
-        } else if (err.message.includes('email-already-in-use')) {
-          message = 'Este correo ya se encuentra registrado. Intenta iniciar sesión.';
-        } else if (err.message.includes('weak-password')) {
-          message = 'La contraseña debe tener al menos 6 caracteres.';
         } else if (err.message.includes('invalid-email')) {
           message = 'El formato del correo electrónico no es válido.';
         } else {
@@ -73,7 +62,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#C97852]/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        
         {/* Brand Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#285943] text-white shadow-lg mb-4">
@@ -92,10 +80,9 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
 
         {/* Card */}
         <div className="bg-white py-8 px-6 shadow-xl rounded-2xl sm:px-10 border border-[#e8ddca]">
-          
           <div className="mb-6 flex items-center justify-between border-b border-[#e8ddca] pb-3">
             <h3 className="text-lg font-bold text-[#285943]">
-              {isRegisterMode ? 'Crear Administrador' : 'Iniciar Sesión'}
+              Iniciar Sesión
             </h3>
             <span className="text-[11px] font-semibold text-[#C97852] bg-[#FAF6F0] px-2.5 py-1 rounded-full border border-[#e8ddca]">
               Acceso Seguro
@@ -110,23 +97,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            
-            {isRegisterMode && (
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#285943] mb-1.5">
-                  Nombre Completo
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder="Ej. Administrador Nativa"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-[#e8ddca] focus:border-[#285943] focus:ring-1 focus:ring-[#285943] text-sm text-[#285943] outline-hidden bg-[#FAF6F0]"
-                />
-              </div>
-            )}
-
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-[#285943] mb-1.5">
                 Correo Electrónico
@@ -166,6 +136,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#285943]/60 hover:text-[#285943] cursor-pointer"
+                  title={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -182,30 +153,13 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <>
-                    <span>{isRegisterMode ? 'CREAR CUENTA Y ENTRAR' : 'INGRESAR AL PANEL'}</span>
+                    <span>INGRESAR AL PANEL</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
               </button>
             </div>
           </form>
-
-          {/* Toggle between login / first time admin registration */}
-          <div className="mt-6 pt-4 border-t border-[#e8ddca] text-center">
-            <button
-              type="button"
-              onClick={() => {
-                setIsRegisterMode(!isRegisterMode);
-                setError(null);
-              }}
-              className="text-xs text-[#C97852] hover:text-[#b3633e] font-semibold transition-colors cursor-pointer"
-            >
-              {isRegisterMode
-                ? '¿Ya tienes una cuenta? Iniciar Sesión'
-                : '¿Primera vez aquí? Registrar Administrador Principal'}
-            </button>
-          </div>
-
         </div>
 
         {/* Back to public store */}
@@ -217,7 +171,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
             <span>← Volver a la Landing Page de NATIVA</span>
           </button>
         </div>
-
       </div>
     </div>
   );
