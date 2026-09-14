@@ -17,12 +17,31 @@
   --color-terracotta-light: #d88f6c;
 }
 
+/* Variables de diseño NATIVA */
 :root {
-  --forest: #285943;
-  --leaf: #6F9E73;
-  --beige: #F3EBDD;
-  --terracotta: #C97852;
-  --white: #FFFFFF;
+  --main-color: #285943;       /* Verde Botánico */
+  --primary-color: #6F9E73;    /* Verde Hoja */
+  --secondary-color: #C97852;  /* Terracota */
+  --bg-color: #F3EBDD;         /* Beige / Fondo */
+  --surface-color: #FFFFFF;    /* Blanco */
+  --surface-soft: #FAF6F0;     /* Crema Suave */
+  --border-color: #e8ddca;     /* Borde Orgánico */
+  --text-dark: #285943;        /* Texto Principal */
+  --text-muted: #527361;       /* Texto Secundario */
+}
+
+/* Reset y base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -31,6 +50,17 @@ body {
   color: #285943;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .font-serif-quote {
@@ -41,9 +71,69 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Custom smooth scroll offset for sticky header */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+/* Clases de utilidad y componentes base */
+.container-custom {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+  padding: 0 1rem;
 }
 
+@media (min-width: 640px) {
+  .container-custom {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding: 0 2rem;
+  }
+}
+
+/* Botones estándar NATIVA */
+.btn-nativa-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-nativa-primary:hover {
+  background-color: #b3633e;
+}
+
+.btn-nativa-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--main-color);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-nativa-dark:hover {
+  background-color: #1e4533;
+}

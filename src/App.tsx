@@ -22,7 +22,6 @@ import { contentService, DEFAULT_SITE_CONTENT } from './services/contentService'
 import { requestService } from './services/requestService';
 import { authService } from './services/authService';
 import { analyticsService } from './services/analyticsService';
-import { MessageCircle } from 'lucide-react';
 
 const checkIsAdminRoute = (): boolean => {
   if (typeof window === 'undefined') return false;
@@ -255,7 +254,7 @@ export default function App() {
   // PUBLIC LANDING PAGE (Kept 100% intact, fast and beautiful)
   // --------------------------------------------------------------------------
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3EBDD] font-montserrat text-[#285943] selection:bg-[#6F9E73] selection:text-white">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden flex flex-col bg-[#F3EBDD] font-montserrat text-[#285943] selection:bg-[#6F9E73] selection:text-white">
       
       {/* 1. Header with Logo, smooth navigation, admin button & "QUIERO MI PRODUCTO" CTA */}
       <Header
@@ -264,7 +263,7 @@ export default function App() {
         isAdminLoggedIn={!!currentUser}
       />
 
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">
         {/* 2. Hero with primary message, image, descriptive copy & dual CTAs */}
         <Hero
           onOpenOrderModal={() => handleOpenOrderModal()}
@@ -333,20 +332,6 @@ export default function App() {
         products={products}
         onClose={() => setIsOrderModalOpen(false)}
       />
-
-      {/* Floating Colombian WhatsApp Concierge */}
-      <a
-        href="https://wa.me/573124567890?text=Hola%20NATIVA,%20quiero%20hacer%20un%20pedido%20de%20sus%20productos%20naturales"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 bg-[#285943] hover:bg-[#1e4533] text-white p-3.5 sm:p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center gap-2 group cursor-pointer border-2 border-white"
-        aria-label="Atención por WhatsApp"
-      >
-        <MessageCircle className="w-6 h-6 text-[#6F9E73] group-hover:text-white transition-colors" />
-        <span className="hidden sm:inline text-xs font-montserrat font-bold tracking-wide pr-1">
-          Asesoría NATIVA
-        </span>
-      </a>
 
       {/* Toast Notification */}
       {toast && (

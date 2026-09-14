@@ -30,25 +30,25 @@ export const ProductLine: React.FC<ProductLineProps> = ({
   return (
     <section
       id="nuestra-linea"
-      className="py-16 lg:py-24 bg-white border-t border-[#e8ddca]"
+      className="py-12 sm:py-16 lg:py-24 bg-white border-t border-[#e8ddca] w-full"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading matching wireframe */}
-        <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
-          <span className="text-xs font-montserrat font-bold uppercase tracking-widest text-[#C97852] block mb-2">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+          <span className="text-[11px] sm:text-xs font-montserrat font-bold uppercase tracking-widest text-[#C97852] block mb-1.5 sm:mb-2">
             NUESTRA LÍNEA
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-montserrat text-[#285943] tracking-tight">
             Productos Naturales
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#285943]/80 font-montserrat">
+          <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base text-[#285943]/80 font-montserrat">
             Cuatro creaciones esenciales inspiradas en la botánica y nutrición consciente colombiana.
           </p>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Products Grid - 1 column on mobile (390px), 2 on tablet, 4 on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
           {displayProducts.map((product) => (
             <div
               key={product.id}
@@ -67,7 +67,7 @@ export const ProductLine: React.FC<ProductLineProps> = ({
                   />
                   
                   {/* Weight Tag */}
-                  <span className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs text-[#285943] text-[11px] font-montserrat font-bold px-2.5 py-1 rounded-md shadow-xs border border-[#e8ddca]">
+                  <span className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs text-[#285943] text-[10px] sm:text-[11px] font-montserrat font-bold px-2.5 py-1 rounded-md shadow-xs border border-[#e8ddca]">
                     {product.weight.split(' ')[0]}
                   </span>
 
@@ -79,14 +79,14 @@ export const ProductLine: React.FC<ProductLineProps> = ({
                 </div>
 
                 {/* Product Content */}
-                <div className="p-5 sm:p-6">
-                  <span className="text-[11px] font-montserrat font-semibold uppercase tracking-wider text-[#6F9E73] block mb-1">
+                <div className="p-4 sm:p-5 lg:p-6">
+                  <span className="text-[10px] sm:text-[11px] font-montserrat font-semibold uppercase tracking-wider text-[#6F9E73] block mb-1">
                     {product.tagline}
                   </span>
                   
                   <h3
                     onClick={() => onSelectProduct(product)}
-                    className="text-xl font-bold font-montserrat text-[#285943] mb-2 group-hover:text-[#C97852] transition-colors cursor-pointer"
+                    className="text-lg sm:text-xl font-bold font-montserrat text-[#285943] mb-1.5 sm:mb-2 group-hover:text-[#C97852] transition-colors cursor-pointer"
                   >
                     {product.name}
                   </h3>
@@ -98,11 +98,11 @@ export const ProductLine: React.FC<ProductLineProps> = ({
               </div>
 
               {/* Price and Action Buttons */}
-              <div className="p-5 sm:p-6 pt-0">
-                <div className="pt-4 border-t border-[#e8ddca]/80 flex flex-col gap-3">
+              <div className="p-4 sm:p-5 lg:p-6 pt-0">
+                <div className="pt-3.5 sm:pt-4 border-t border-[#e8ddca]/80 flex flex-col gap-2.5 sm:gap-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-montserrat text-[#285943]/70 font-medium">Precio</span>
-                    <span className="text-lg font-extrabold font-montserrat text-[#285943]">
+                    <span className="text-base sm:text-lg font-extrabold font-montserrat text-[#285943]">
                       ${product.price.toLocaleString('es-CO')} <span className="text-[10px] font-normal text-[#285943]/60">COP</span>
                     </span>
                   </div>
@@ -111,7 +111,7 @@ export const ProductLine: React.FC<ProductLineProps> = ({
                     <button
                       id={`view-details-${product.id}`}
                       onClick={() => onSelectProduct(product)}
-                      className="py-2.5 px-3 bg-white hover:bg-[#F3EBDD] text-[#285943] border border-[#285943] font-montserrat font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                      className="min-h-[44px] py-2.5 px-3 bg-white hover:bg-[#F3EBDD] text-[#285943] border border-[#285943] font-montserrat font-bold text-xs uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                       title="Ver producto"
                     >
                       <Eye className="w-3.5 h-3.5" />
@@ -121,7 +121,7 @@ export const ProductLine: React.FC<ProductLineProps> = ({
                     <button
                       id={`order-product-${product.id}`}
                       onClick={() => onOpenOrderModal(product.id)}
-                      className="py-2.5 px-3 bg-[#C97852] hover:bg-[#b3633e] text-white font-montserrat font-bold text-xs uppercase tracking-wider rounded-lg shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                      className="min-h-[44px] py-2.5 px-3 bg-[#C97852] hover:bg-[#b3633e] text-white font-montserrat font-bold text-xs uppercase tracking-wider rounded-lg shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                       title="Pedir este producto"
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />

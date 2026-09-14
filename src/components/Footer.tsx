@@ -20,15 +20,15 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="main-footer" className="bg-[#1e4533] text-white border-t border-[#285943]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+    <footer id="main-footer" className="bg-[#1e4533] text-white border-t border-[#285943] w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 pb-10 sm:pb-12 border-b border-white/10">
           
           {/* Brand and Mission */}
           <div className="lg:col-span-4 flex flex-col items-start text-left">
             <Logo variant="light" size="md" className="mb-4" />
-            <p className="text-xs sm:text-sm text-[#F3EBDD]/80 font-montserrat leading-relaxed max-w-sm mb-6">
+            <p className="text-xs sm:text-sm text-[#F3EBDD]/80 font-montserrat leading-relaxed max-w-sm mb-4 sm:mb-6">
               Empresa colombiana dedicada a la elaboración y comercialización artesanal de productos naturales, infusiones botánicas y alimentos saludables.
             </p>
             <p className="font-lora italic text-xs text-[#6F9E73]">
@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
 
           {/* Navigation Links */}
           <div className="lg:col-span-3 flex flex-col items-start text-left">
-            <h4 className="text-xs font-montserrat font-bold uppercase tracking-widest text-[#6F9E73] mb-4">
+            <h4 className="text-xs font-montserrat font-bold uppercase tracking-widest text-[#6F9E73] mb-3 sm:mb-4">
               Navegación
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-montserrat font-medium text-[#F3EBDD]/80">
@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="hover:text-white transition-colors duration-150 inline-flex items-center gap-1.5"
+                    className="hover:text-white transition-colors duration-150 inline-flex items-center gap-2 py-1"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C97852]" />
                     {link.name}
@@ -59,7 +59,7 @@ export const Footer: React.FC = () => {
 
           {/* Contact Information */}
           <div className="lg:col-span-3 flex flex-col items-start text-left">
-            <h4 className="text-xs font-montserrat font-bold uppercase tracking-widest text-[#6F9E73] mb-4">
+            <h4 className="text-xs font-montserrat font-bold uppercase tracking-widest text-[#6F9E73] mb-3 sm:mb-4">
               Contacto & Atención
             </h4>
             <ul className="space-y-3 text-xs sm:text-sm font-montserrat text-[#F3EBDD]/80">
@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
 
           {/* Social Media & Badges */}
           <div className="lg:col-span-2 flex flex-col items-start text-left">
-            <h4 className="text-xs font-montserrat font-bold uppercase tracking-widest text-[#6F9E73] mb-4">
+            <h4 className="text-xs font-montserrat font-bold uppercase tracking-widest text-[#6F9E73] mb-3 sm:mb-4">
               Síguenos
             </h4>
             <p className="text-xs text-[#F3EBDD]/70 font-montserrat mb-4">
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#C97852] text-white flex items-center justify-center transition-colors duration-200"
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#C97852] text-white flex items-center justify-center transition-colors duration-200"
                 aria-label="Instagram NATIVA"
               >
                 <Instagram className="w-4 h-4" />
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#C97852] text-white flex items-center justify-center transition-colors duration-200"
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#C97852] text-white flex items-center justify-center transition-colors duration-200"
                 aria-label="Facebook NATIVA"
               >
                 <Facebook className="w-4 h-4" />
@@ -121,7 +121,7 @@ export const Footer: React.FC = () => {
                 href="https://wa.me/573124567890"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#6F9E73] text-white flex items-center justify-center transition-colors duration-200"
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#6F9E73] text-white flex items-center justify-center transition-colors duration-200"
                 aria-label="WhatsApp NATIVA"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -132,10 +132,10 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar / Copyright & Admin Access */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-montserrat text-[#F3EBDD]/60">
+        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-montserrat text-[#F3EBDD]/60 text-center sm:text-left">
           <p>© 2026 NATIVA – Productos naturales y bienestar. Todos los derechos reservados.</p>
           
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <a
               href="#admin"
               id="footer-admin-login-link"
@@ -143,7 +143,7 @@ export const Footer: React.FC = () => {
                 e.preventDefault();
                 window.location.hash = 'admin';
               }}
-              className="text-[#F3EBDD]/60 hover:text-[#6F9E73] transition-colors underline-offset-4 hover:underline"
+              className="text-[#F3EBDD]/70 hover:text-white transition-colors underline-offset-4 hover:underline py-1"
             >
               Acceso Administrador
             </a>

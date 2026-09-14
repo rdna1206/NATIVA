@@ -107,17 +107,32 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-2 lg:hidden">
+        {/* Mobile Actions: Admin, Cart, Menu Toggle */}
+        <div className="flex items-center space-x-1.5 sm:space-x-2 lg:hidden">
+          {onOpenAdmin && (
+            <button
+              onClick={onOpenAdmin}
+              className={`p-2 rounded-lg border text-xs font-bold transition-colors cursor-pointer flex items-center justify-center ${
+                isAdminLoggedIn
+                  ? 'bg-[#285943] text-white border-[#285943]'
+                  : 'bg-transparent text-[#285943]/80 hover:text-[#285943] border-[#e8ddca] hover:bg-[#FAF6F0]'
+              }`}
+              title={isAdminLoggedIn ? 'Panel de Administración' : 'Acceso Administrador'}
+              aria-label="Panel Administrador"
+            >
+              <ShieldCheck className="w-4 h-4" />
+            </button>
+          )}
+
           <button
             id="mobile-cart-btn"
             onClick={() => onOpenOrderModal()}
-            className="p-2 text-[#285943] hover:text-[#C97852] transition-colors relative"
+            className="p-2 text-[#285943] hover:text-[#C97852] transition-colors relative flex items-center justify-center rounded-lg border border-[#e8ddca] bg-[#FAF6F0]"
             aria-label="Abrir pedido"
           >
-            <ShoppingBag className="w-5 h-5" />
+            <ShoppingBag className="w-4 h-4" />
             {cartCount > 0 && (
-              <span className="absolute top-1 right-1 bg-[#C97852] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute -top-1.5 -right-1.5 bg-[#C97852] text-white text-[9px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
                 {cartCount}
               </span>
             )}
@@ -126,11 +141,11 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[#285943] hover:text-[#C97852] rounded-lg transition-colors focus:outline-none"
+            className="p-2 text-[#285943] hover:text-[#C97852] rounded-lg transition-colors focus:outline-none border border-[#e8ddca] bg-[#FAF6F0]"
             aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
@@ -139,32 +154,47 @@ export const Header: React.FC<HeaderProps> = ({
       <div
         id="mobile-menu-drawer"
         className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-          mobileMenuOpen ? 'max-h-96 opacity-100 border-b border-[#e5dac5] bg-[#F3EBDD]' : 'max-h-0 opacity-0'
+          mobileMenuOpen ? 'max-h-[32rem] opacity-100 border-b border-[#e5dac5] bg-[#F3EBDD]/98 backdrop-blur-md shadow-lg' : 'max-h-0 opacity-0 pointer-events-none'
         }`}
       >
-        <div className="px-5 pt-3 pb-6 space-y-3">
+        <div className="px-5 pt-3 pb-6 space-y-2">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="block px-3 py-2 text-base font-semibold font-montserrat text-[#285943] hover:text-[#C97852] hover:bg-[#FAF6F0] rounded-md transition-colors"
+              className="flex items-center min-h-[44px] px-3 py-2.5 text-sm font-bold font-montserrat text-[#285943] hover:text-[#C97852] hover:bg-[#FAF6F0] rounded-lg transition-colors"
             >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C97852] mr-2.5" />
               {link.name}
             </a>
           ))}
-          <div className="pt-2">
+
+          <div className="pt-3 border-t border-[#e5dac5] space-y-2">
             <button
               id="mobile-drawer-cta-button"
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenOrderModal();
               }}
-              className="w-full py-3 bg-[#C97852] hover:bg-[#b3633e] text-white font-montserrat font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-colors text-center flex items-center justify-center gap-2"
+              className="w-full min-h-[44px] py-3 bg-[#C97852] hover:bg-[#b3633e] text-white font-montserrat font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-colors text-center flex items-center justify-center gap-2 cursor-pointer"
             >
               <ShoppingBag className="w-4 h-4" />
               <span>QUIERO MI PRODUCTO</span>
             </button>
+
+            {onOpenAdmin && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenAdmin();
+                }}
+                className="w-full min-h-[40px] py-2 text-center text-xs font-semibold text-[#285943]/75 hover:text-[#285943] transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>{isAdminLoggedIn ? 'Ir al Panel Administrador' : 'Acceso Administrador'}</span>
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -101,6 +101,15 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         </div>
       </div>
 
+      {/* Mobile Backdrop */}
+      {mobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden backdrop-blur-xs transition-opacity"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Sidebar Desktop & Mobile Drawer */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 w-72 bg-[#285943] text-white flex flex-col justify-between p-6 shadow-2xl lg:static lg:z-auto transition-transform duration-300 ease-in-out ${
